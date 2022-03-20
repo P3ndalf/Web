@@ -1,0 +1,259 @@
+body{
+  background: url("../../assets/bg.png") no-repeat;
+  background-size: cover;
+  font-family: 'Pacifico';
+  font-size: 25px;
+}
+
+header{
+  font-size: 20px !important;
+}
+
+footer{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  font-size: 20px !important;
+}
+
+.menu-left{
+  display:flex;
+  float: left;
+  margin-top: 90px;
+  margin-left: 10px;
+}
+
+.main-center{
+  display: flex;
+  align-items: center;
+  margin: 50px;
+}
+
+.back-up{
+  position: fixed;
+  bottom: 75px; 
+  left:10px;
+}
+
+.card-group{
+  margin: 10px 0px 10px 0px ;
+  padding: 0;
+}
+
+.card{
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  margin: 0px 5px 15px 5px;
+}
+
+.card-img{
+  height: 294px;
+  overflow: hidden;
+}
+
+.zoomed-image {
+  overflow: hidden;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.zoomed-image img {
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+}
+
+.zoomed-image img:hover {
+  -webkit-transform: scale(1.3);
+  -moz-transform: scale(1.3);
+  -o-transform: scale(1.3);
+}
+
+.crop {
+  position: absolute;
+  left: -100%;
+  right: -100%;
+  top: -100%;
+  bottom: -100%;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-link {
+  border: 6px;
+  border-radius: 25px;
+}
+
+ul.navbar-nav>li.nav-item a.nav-link:hover {
+  color: white !important;
+  background-color: rgb(36, 36, 36);
+}
+
+#dropDownMenu ul#dropDownUl {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 0px;
+}
+
+#dropDownMenu ul#dropDownUl.show {
+  display: block;
+}
+
+ul#dropDownUl>li{
+  display:inline-block;
+}
+
+.navbar-nav #dropDownMenu #dropDownUl a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.navbar-nav #dropDownMenu #dropDownUl a:hover {
+  float: none;
+  color: white !important;
+  background-color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  padding-top: 60px;
+  backdrop-filter: blur(10px);
+}
+
+/* Modal Content/Box */
+#imageModal .modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 0 auto;
+  border: 1px solid #888;
+  width: 400px; /* Could be more or less, depending on screen size */
+}
+#imageModal .modal-header{
+  background-color: #fefefe;
+  margin: 0% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 400px;
+  border-radius: 0% 0% 15px 15px;
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+.valid{
+  color:green;
+}
+
+.invalid{
+  color:red;
+}
+
+/*Add New svg arrows*/
+
+.modal-header svg {
+    width: 100px;
+    height: auto;
+    margin: 0 2rem;
+    cursor: pointer;
+    overflow: visible;
+}
+.modal-header svg polygon, 
+.modal-header svg path {
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    fill: #000000;
+}
+.modal-header svg:hover polygon, 
+.modal-header svg:hover path {
+    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+    fill: #000;
+}
+.modal-header svg:hover .modal-header-pl {
+    animation: modal-header-anim 1s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+}
+.modal-header svg:hover .modal-header-pl-fixed {
+    animation: modal-header-fixed-anim 1s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+}
+ 
+@keyframes modal-header-anim {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    5% {
+        transform: translateX(-0.1rem);
+    }
+    100% {
+        transform: translateX(1rem);
+        opacity: 0;
+    }
+}
+@keyframes modal-header-fixed-anim {
+    5% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.popover{
+  top:inherit
+  position: fixed;
+  width: 250px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 5px;
+  display: none;
+  font-size: 14px;
+  background: rgb(235, 211, 166);
+  border: 1px solid black;
+}
