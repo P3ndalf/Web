@@ -16,9 +16,9 @@ class Route
             $action_name = $routes[2];
         }
 
-        $model_name = $controller_name.'_Model';
-        $controller_name = $controller_name.'_Controller';
-        $action_name = 'action_'.$action_name;
+        $model_name = $controller_name.'Model';
+        $controller_name = $controller_name.'Controller';
+        $action_name = $action_name.'Action';
 
         $model_file = strtolower($model_name).'.php';
 		$model_path = "app/models/".$model_file;

@@ -15,3 +15,7 @@
 
     </div>
 </div>
+
+<script>
+    seedCookie('Главная');
+</script>
