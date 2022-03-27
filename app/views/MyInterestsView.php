@@ -50,13 +50,24 @@
       Leo in vitae turpis massa sed elementum tempus egestas. Ultricies mi quis hendrerit dolor magna eget est lorem.
     </p>
     <hr>
-    <div class="interests">
-      <script src="../../js/Interests.js"></script>
-      <script src="../../js/MyInterests.js"></script>
-      <script>
-        getInterests(interests)
-      </script>
-    </div>
+
+    <?php
+    for ($i = 0; $i < sizeof($data->getData()); $i++) {
+      foreach ($data->getData() as $item) {
+        echo '<h3 id="' . $item["Id"] . '">' . $item["Name"] . '</h3>';
+        echo '<hr>';
+        echo '<div class="d-flex flex-row">';
+        foreach ($item["Images"]["Value"] as $pkey => $image) {
+          
+          echo '<div class="card">';
+          echo '      <img class="card-img zoomed-image" src="../../assets/interests/' . $pkey . '.jpg">';
+          echo '</div>';
+        }
+        echo '</div>';
+        echo '<p>'.$item["Content"].'</p>';
+      }
+    }
+    ?>
   </div>
 
 </div>

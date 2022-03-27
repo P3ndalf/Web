@@ -4,37 +4,38 @@
             Контакты
         </h1>
 
-        <form class="needs-validation" novalidate action="mailto:vaniok46black@gmail.com">
+        <form method="post">
+
             <div class="form-row">
                 <div class="col-md-6 mb-3">
                     <label for="nameId">Введите имя</label>
-                    <input type="text" class="form-control" id="nameId" placeholder="Ваше имя">
-                    <div id="nameInputValidityId"></div>
+                    <input type="text" class="form-control" id="nameId" name="name" value="<?php echo $data->fields['name'] ?>" placeholder="Ваше имя">
+                    <?php echo $data->validator->errMessages['name'] ?>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="lastNameId">Введите фамилию</label>
-                    <input type="text" class="form-control" id="lastNameId" placeholder="Ваша фамилия">
-                    <small id="lastNameInputValidityId"></small>
+                    <input type="text" class="form-control" id="lastNameId" name="lastName" value="<?php echo $data->fields['lastName'] ?>" placeholder="Ваша фамилия">
+                    <?php echo $data->validator->errMessages['lastName'] ?>
                 </div>
             </div>
 
             <div class="custom-radio">
                 <div class="custom-control ">
-                    <input type="radio" class="custom-control-input" id="maleId" name="radio-stacked">
-                    <label class="custom-control-label" for="MaleId">Мужской пол</label>
+                    <input type="radio" class="custom-control-input" id="maleId" name="gender" value="male" <?php if (isset($data->fields['gender']) && ($data->fields['gender'] == "male")) echo "checked"; ?>>
+                    <label class="custom-control-label" for="maleId">Мужской пол</label>
                 </div>
                 <div class="custom-control ">
-                    <input type="radio" class="custom-control-input" id="femaleId" name="radio-stacked">
+                    <input type="radio" class="custom-control-input" id="femaleId" name="gender" value="female" <?php if (isset($data->fields['gender']) && ($data->fields['gender'] == "female")) echo "checked"; ?>>
                     <label class="custom-control-label" for="femaleId">Женский пол</label>
                 </div>
             </div>
-            <small id="genderInputValidityId"></small>
+            <?php echo $data->validator->errMessages['gender'] ?>
 
             <div class="form-row mb-3">
                 <div class="col">
                     <label for="inputEmailId">Введите почтовый адрес</label>
-                    <input type="email" class="form-control" id="inputEmailId" placeholder="Ваш email">
-                    <small id="emailInputValidityId"></small>
+                    <input class="form-control" id="inputEmailId" name="email" placeholder="Ваш email" value="<?php echo $data->fields['email'] ?>">
+                    <?php echo $data->validator->errMessages['email'] ?>
                 </div>
 
             </div>
@@ -42,38 +43,38 @@
             <div class="form-row mb-3">
                 <div class="col">
                     <label for="inputPhoneId">Введите номер телефона</label>
-                    <input class="form-control" id="inputPhoneId" placeholder="Ваш мобильный номер">
-                    <small id="phoneInputValidityId"></small>
+                    <input class="form-control" id="inputPhoneId" name="phone" placeholder="Ваш мобильный номер" value="<?php echo $data->fields['phone'] ?>">
+                    <?php echo $data->validator->errMessages['phone'] ?>
                 </div>
             </div>
 
             <div class="form-group mb-3">
                 <label for="inputAgeStateId">Возраст</label>
-                <select id="inputAgeStateId" class="form-control">
-                    <option selected disabled value="" style="color: grey;">Выберите возраст</option>
-                    <option id="1SelectedAgeStateId">0 - 5 лет</option>
-                    <option id="2SelectedAgeStateId">5 - 10 лет</option>
-                    <option id="3SelectedAgeStateId">10 - 15 лет</option>
-                    <option id="4SelectedAgeStateId">15 - 20 лет</option>
-                    <option id="5SelectedAgeStateId">20 - 25 лет</option>
-                    <option id="6SelectedAgeStateId">30 - 35 лет</option>
-                    <option id="7SelectedAgeStateId">40 - 45 лет</option>
-                    <option id="8SelectedAgeStateId">50 - 55 лет</option>
-                    <option id="9SelectedAgeStateId">60 - 65 лет</option>
-                    <option id="10SelectedAgeStateId">70 - 75 лет</option>
-                    <option id="11SelectedAgeStateId">80 - 85 лет</option>
-                    <option id="12SelectedAgeStateId">90 - 95 лет</option>
-                    <option id="13SelectedAgeStateId">вечный</option>
+                <select id="inputAgeStateId" name="age" class="form-control">
+                    <option <?php if ($data->fields['age'] == "") echo "selected" ?> disabled value="" style="color: grey;">Выберите возраст</option>
+                    <option <?php if ($data->fields['age'] == "0") echo "selected" ?> value="0">0 - 5 лет</option>
+                    <option <?php if ($data->fields['age'] == "1") echo "selected" ?> value="1">5 - 10 лет</option>
+                    <option <?php if ($data->fields['age'] == "2") echo "selected" ?> value="2">10 - 15 лет</option>
+                    <option <?php if ($data->fields['age'] == "3") echo "selected" ?> value="3">15 - 20 лет</option>
+                    <option <?php if ($data->fields['age'] == "4") echo "selected" ?> value="4">20 - 25 лет</option>
+                    <option <?php if ($data->fields['age'] == "5") echo "selected" ?> value="5">30 - 35 лет</option>
+                    <option <?php if ($data->fields['age'] == "6") echo "selected" ?> value="6">40 - 45 лет</option>
+                    <option <?php if ($data->fields['age'] == "7") echo "selected" ?> value="7">50 - 55 лет</option>
+                    <option <?php if ($data->fields['age'] == "8") echo "selected" ?> value="8">60 - 65 лет</option>
+                    <option <?php if ($data->fields['age'] == "9") echo "selected" ?> value="9">70 - 75 лет</option>
+                    <option <?php if ($data->fields['age'] == "10") echo "selected" ?> value="10">80 - 85 лет</option>
+                    <option <?php if ($data->fields['age'] == "11") echo "selected" ?> value="11">90 - 95 лет</option>
+                    <option <?php if ($data->fields['age'] == "12") echo "selected" ?> value="12">вечный</option>
                 </select>
-                <small id="ageInputValidityId"></small>
+                <?php echo $data->validator->errMessages['age'] ?>
             </div>
 
             <section>
                 <label id="inputDateId">Дата рождения</label>
                 <div class="ml-0 form-row">
                     <div class="form-group col-md-3" style="padding: 0;">
-                        <input type="text" class="form-control" id="dateValue" placeholder="dd/mm/yyyy" />
-                        <small id="birthdayInputValidityId"></small>
+                        <input type="text" class="form-control" id="dateValue" name="dateValue" value="<?php echo $data->fields['dateValue'] ?>" placeholder="dd/mm/yyyy" />
+                        <?php echo $data->validator->errMessages['dateValue'] ?>
                     </div>
                     <div class="form-group col-md-2">
                         <button class="btn btn-outline-dark align-top" type="button" onclick="document.getElementById('calendar').style.display='block'">Выбрать дату</button>
@@ -178,13 +179,12 @@
                 </div>
             </section>
             <div class="d-flex mb-3">
-                <button class="btn btn-outline-dark mr-3" type="button" id="submit" value="submit">Отправить данные</button>
+                <input class="btn btn-outline-dark mr-3" type="submit" name="submit" value="Отправить">
                 <button class="btn btn-outline-danger" type="button" value="reset">Очистить форму</button>
             </div>
 
         </form>
     </div>
-
 </div>
 
 <script>

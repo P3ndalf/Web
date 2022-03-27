@@ -1,8 +1,17 @@
 <?php
 class ContactsController extends Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->model = new ContactsModel();
+    }
+
     function indexAction()
     {
-        $this->view->generate('ContactsView.php');
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $this->model->validateForm($_POST);
+        }
+        $this->view->generate('ContactsView.php', $this->model);
     }
 }

@@ -13,15 +13,12 @@ function getImageCards() {
                 }
 
                 document.write('<div class="card">');
-                document.write('<div class="card-img zoomed-image">');
-
-                document.write('<img class="crop" src=' + images[key].photo
+                document.write('<img class="card-img zoomed-image" src=' + images[key].photo
                     + ' alt="К сожалению, фото удалено" id="' + images[key].photo + '"/>');
                 var image = document.getElementById(images[key].photo);
                 image.addEventListener("click", () => {
                     getImage(key);
                 })
-                document.write('</div>');
                 document.write('<div class="card-body">');
                 document.write('<h5 class="card-title">' + images[key].title + "</h5>");
                 document.write('</div></div>');

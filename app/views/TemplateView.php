@@ -65,8 +65,6 @@
     Прав нет и не будет
   </div>
 </footer>
-<script src="../../js/PopOver.js"></script>
-<script src="../../js/Interests.js"></script>
 <script src="../../js/DropDownMenu.js"></script>
 <script src="../../js/Date.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

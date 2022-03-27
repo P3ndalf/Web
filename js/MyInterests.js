@@ -33,10 +33,8 @@ function getImageCards(images) {
             }
 
             document.write('<div class="card">');
-            document.write('<div class="card-img zoomed-image">');
-            document.write('<img class="crop" src="../../assets/interests/' + key + '.jpg"'
+            document.write('<img class="card-img zoomed-image" src="../../assets/interests/' + key + '.jpg"'
                 + 'alt="К сожалению, фото удалено" id="' + key + '" />');
-            document.write('</div>');
             document.write('<div class="card-body">');
             document.write('<h5 class="card-title">' + images.Value[key].name + "</h5>");
             document.write('</div></div>');
