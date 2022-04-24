@@ -1,34 +1,34 @@
 <?php
 class FormValidator
 {
-    public $rules = [];
+    protected $rules = [];
     public $errors = [];
     public $errMessages = [];
 
     public $predicates = [];
 
-    function isNotEmpty($data)
+    protected function isNotEmpty($data)
     {
         if (empty($data)) {
             return "Пусто";
         }
     }
 
-    function isInteger($data)
+    protected function isInteger($data)
     {
         if (!is_numeric($data)) {
             return "Не число!";
         }
     }
 
-    function isMinAnswSize($data, $size)
+    protected function isMinAnswSize($data, $size)
     {
         if (sizeof(explode(" ", $data)) < $size) {
             return "Ответ содержит меньше " . $size . " слов";
         }
     }
 
-    function isLess($data, $value)
+    protected function isLess($data, $value)
     {
         $isInteger = $this->isInteger($data);
         if (empty($isInteger)) {
@@ -41,7 +41,7 @@ class FormValidator
         }
     }
 
-    function isGreater($data, $value)
+    protected function isGreater($data, $value)
     {
         $isInteger = $this->isInteger($data);
         if (empty($isInteger)) {
@@ -54,34 +54,35 @@ class FormValidator
         }
     }
 
-    function isEmail($data)
+    protected function isEmail($data)
     {
         if (!filter_var($data, FILTER_VALIDATE_EMAIL)) {
             return "Введите корректный email";
         }
     }
 
-    function isPhone($data)
+    protected function isPhone($data)
     {
         if (!preg_match('/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,11}$/', $data)) {
             return "Введите корректный номер телефона!";
         }
     }
 
-    function isWord($data)
+    protected function isWord($data)
     {
         if (!preg_match('/([A-Za-zА-Яа-я]){3,}/', $data)) {
             return "Введите корректное слово";
         }
     }
-    function isDate($data)
+
+    protected function isDate($data)
     {
         if (!preg_match('/([0-9]|[0-9][0-9])\/([0-9]|[0-9][0-9])\/([0-9][0-9][0-9][0-9])/', $data)) {
             return "Выберите корректную дату";
         }
     }
 
-    function SetRule($field_name, $rules)
+    protected function setRule($field_name, $rules)
     {
         if ($rules) {
             $this->rules[$field_name] = $rules;
@@ -128,7 +129,7 @@ class FormValidator
     {
         foreach ($post_array as $pkey => $value) {
             $rules = $this->predicates[$pkey];
-            $this->SetRule($pkey, $rules);
+            $this->setRule($pkey, $rules);
         }
 
         foreach ($this->rules as $field => $rules) {
@@ -137,10 +138,10 @@ class FormValidator
                 $this->validateRule($field, $rule_name, $value);
             }
         }
-        $this->ShowErrors();
+        $this->showErrors();
     }
 
-    function ShowErrors()
+    protected function showErrors()
     {
         foreach ($this->errors as $pkey => $errors) {
             $flag = false;

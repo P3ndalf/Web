@@ -10,7 +10,6 @@
   <script src="https://unpkg.com/vue@next"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="../../js/SeedCookie.js"></script>
-  <script src="../../js/urlTree.js"></script>
   <title>Главная</title>
 </head>
 
@@ -45,9 +44,6 @@
               <a class="nav-link" href="/Test">Тест</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/History">История</a>
-            </li>
-            <li class="nav-item">
               <span class="nav-link" id="date"></span>
             </li>
           </ul>
@@ -65,8 +61,9 @@
     Прав нет и не будет
   </div>
 </footer>
-<script src="../../js/DropDownMenu.js"></script>
 <script src="../../js/Date.js"></script>
+<script src="../../js/Interests.js"></script>
+<script src="../../js/DropDownMenu.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>

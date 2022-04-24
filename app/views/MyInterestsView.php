@@ -52,7 +52,6 @@
     <hr>
 
     <?php
-    for ($i = 0; $i < sizeof($data->getData()); $i++) {
       foreach ($data->getData() as $item) {
         echo '<h3 id="' . $item["Id"] . '">' . $item["Name"] . '</h3>';
         echo '<hr>';
@@ -66,7 +65,7 @@
         echo '</div>';
         echo '<p>'.$item["Content"].'</p>';
       }
-    }
+  
     ?>
   </div>
 

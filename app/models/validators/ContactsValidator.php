@@ -21,8 +21,8 @@ class ContactsValidator extends FormValidator
         "age" => ["isNotEmpty"]
     ];
 
-    function validate($post_array, $predicates = [])
+    function validate($post_array)
     {
-        parent::validate($post_array, $this->predicates);
+        parent::validate($post_array);
     }
 }
