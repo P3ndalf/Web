@@ -37,7 +37,6 @@
                     <input class="form-control" id="inputEmailId" name="email" placeholder="Ваш email" value="<?php echo $data->fields['email'] ?>">
                     <?php echo $data->validator->errMessages['email'] ?>
                 </div>
-
             </div>
 
             <div class="form-row mb-3">

@@ -22,18 +22,14 @@ class Route
 
         $model_file = strtolower($model_name).'.php';
 		$model_path = "app/models/".$model_file;
+    
 		if(file_exists($model_path))
 		{
 			include $model_path;
 		}
 
-        $controller_file = strtolower($controller_name).'php';
-        $controller_path = "app/controllers/".$controller_file;
-        if(file_exists($controller_path)) {
-            include $controller_path;
-        }
-
         $controller_file = strtolower($controller_name).'.php';
+    
 		$controller_path = "app/controllers/".$controller_file;
 		if(file_exists($controller_path))
 		{
@@ -41,11 +37,13 @@ class Route
 		}
 		else
 		{
-			Route::ErrorPage404();
+			//Route::ErrorPage404();
 		}
 
         $controller = new $controller_name;
+        
 		$action = $action_name;
+        
 		
 		if(method_exists($controller, $action))
 		{
@@ -53,7 +51,7 @@ class Route
 		}
 		else
 		{
-			Route::ErrorPage404();
+			//Route::ErrorPage404();
 		}
     }
 

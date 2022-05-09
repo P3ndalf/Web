@@ -7,6 +7,8 @@ class FormValidator
 
     public $predicates = [];
 
+    public $isErrorExist = false;
+
     protected function isNotEmpty($data)
     {
         if (empty($data)) {
@@ -153,8 +155,7 @@ class FormValidator
             }
             if ($flag == true) {
                 $this->errMessages[$pkey] = '<div style="color: red;">' . $error . '</div>';
-            } else {
-                $this->errMessages[$pkey] = '<div style="color: green;"> Верно!</div>';
+                $this->isErrorExist = true;
             }
         }
     }

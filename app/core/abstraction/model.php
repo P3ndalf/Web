@@ -1,5 +1,5 @@
 <?php
-include 'D:/Education/University/Web/Solutions/new_web/app/models/validators/FormValidator.php';
+include 'D:/OpenServer/domains/newweb/app/models/validators/FormValidator.php';
 class Model
 {
     public $validator;

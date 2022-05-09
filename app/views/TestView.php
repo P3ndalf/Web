@@ -55,19 +55,19 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="NameId">Введите имя</label>
-                        <input type="text" class="form-control"  value="<?php echo $data->fields['name'] ?>"  placeholder="Ваше имя" name="name">
+                        <input type="text" class="form-control" value="<?php echo $data->fields['name'] ?>" placeholder="Ваше имя" name="name">
                         <?php echo $data->validator->errMessages['name'] ?>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="LastNameId">Введите фамилию</label>
-                        <input type="text" class="form-control"  value="<?php echo $data->fields['lastName'] ?>"  placeholder="Ваша фамилия" name="lastName">
+                        <input type="text" class="form-control" value="<?php echo $data->fields['lastName'] ?>" placeholder="Ваша фамилия" name="lastName">
                         <?php echo $data->validator->errMessages['lastName'] ?>
                     </div>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="inputEmailId">Введите почтовый адрес</label>
-                    <input type="email" class="form-control"  value="<?php echo $data->fields['email'] ?>"  placeholder="Ваш email" name="email">
+                    <input type="email" class="form-control" value="<?php echo $data->fields['email'] ?>" placeholder="Ваш email" name="email">
                     <?php echo $data->validator->errMessages['email'] ?>
                 </div>
             </div>
@@ -77,8 +77,30 @@
                 <button class="btn btn-outline-danger" type="reset" value="reset">Очистить форму</button>
             </div>
         </form>
+        <div class="mb-5">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Ответ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    foreach ($data->answers as $value) {
+                        $answer = (array)$value;
+                        echo '<tr>';
+                        echo '  <th scope="row">' . $answer['id'] . '</th>';
+                        echo '  <td>' . $answer['name'] . '</td>';
+                        echo '  <td>' . $answer['lastName'] . '</td>';
+                        echo '  <td>' . $answer['percent'] . '</td>';
+                        echo '<tr>';
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-<script>
-    seedCookie('Тест');
-</script>
