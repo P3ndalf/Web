@@ -42,6 +42,11 @@ class BaseActiveRecord
         }
     }
 
+    public function getCount() {
+        $count = $this->pdo->query("SELECT COUNT(*) FROM " . $this->tableName)->fetch();
+        return (int)$count[0];
+    }
+
     public function find($id)
     {
         $sql = "SELECT * FROM " . $this->tableName . " WHERE id=$id";
@@ -118,6 +123,27 @@ class BaseActiveRecord
         } else {
             print_r($this->pdo->errorInfo());
         }
+    }
+
+    public function getPagedByDesc($start, $count, $descParameter = "id")
+    {
+        $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $descParameter . " DESC LIMIT " . $start . ', ' . $count;
+        $stmt = $this->pdo->query($sql);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$rows)
+            return null;
+
+        $ar_objs = array();
+        foreach ($rows as $row) {
+            $obj = new static();
+            foreach ($row as $key => $value) {
+                $obj->$key = $value;
+            }
+            array_push($ar_objs, $obj);
+        }
+
+        return $ar_objs;
     }
 }
 

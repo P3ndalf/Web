@@ -4,7 +4,7 @@
             Создание блога
         </h1>
 
-        <form method="post">
+        <form enctype="multipart/form-data" method="post">
 
             <div class="mb-3">
                 <label for="blogThemeId">Введите тему блога</label>
@@ -19,7 +19,7 @@
                         <span class="input-group-text">Картинка</span>
                     </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="blogImage">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="blogImage" value="<?php echo $data->fields['blogImage'] ?>">
                         <label class="custom-file-label" for="inputGroupFile01">Выберите подходящую запоминающуюся картинку</label>
                     </div>
                 </div>
@@ -35,7 +35,14 @@
                 <input class="btn btn-outline-dark mr-3" type="submit" name="submit" value="Отправить">
                 <button class="btn btn-outline-danger" type="button" value="reset">Очистить форму</button>
             </div>
+        </form>
 
+        <form enctype="multipart/form-data" method="post">
+            <div class="form-group">
+                <label for="uploadedFileId">Загрузите CSV</label>
+                <input type="file" name="uploadedFile" class="form-control-file" id="uploadedFileId">
+            </div>
+            <input class="btn btn-outline-dark mr-3" type="submit" name="submit" value="Загрузить">
         </form>
     </div>
 </div>

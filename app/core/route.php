@@ -1,65 +1,66 @@
 <?php
 class Route
 {
-    static function start()
-    {
-        $controller_name = 'Home';
-        $action_name = 'index';
 
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
+	static function start()
+	{
+		$controller_name = 'Home';
+		$action_name = 'index';
 
-        if (!empty($routes[1])) {
-            $controller_name = $routes[1];
-        }
+		$routes = explode('/', $_SERVER['REQUEST_URI']);
 
-        if (!empty($routes[2])) {
-            $action_name = $routes[2];
-        }
+		if (!empty($routes[1])) {
+			$controller_name = $routes[1];
+		}
 
-        $model_name = $controller_name.'Model';
-        $controller_name = $controller_name.'Controller';
-        $action_name = $action_name.'Action';
+		if (!empty($routes[2])) {
+			$action_name = $routes[2];
+		}
 
-        $model_file = strtolower($model_name).'.php';
-		$model_path = "app/models/".$model_file;
-    
-		if(file_exists($model_path))
-		{
+		$model_name = $controller_name . 'Model';
+		$controller_name = $controller_name . 'Controller';
+		if (str_contains($action_name, '?')) {
+			$action_name = substr_replace($action_name, 'Action', strpos($action_name, '?'), 0);
+		} else {
+			$action_name = $action_name . 'Action';
+		}
+
+		$model_file = strtolower($model_name) . '.php';
+		$model_path = "app/models/" . $model_file;
+
+		if (file_exists($model_path)) {
 			include $model_path;
 		}
 
-        $controller_file = strtolower($controller_name).'.php';
-    
-		$controller_path = "app/controllers/".$controller_file;
-		if(file_exists($controller_path))
-		{
+		$controller_file = strtolower($controller_name) . '.php';
+
+		$controller_path = "app/controllers/" . $controller_file;
+		if (file_exists($controller_path)) {
 			include $controller_path;
-		}
-		else
-		{
+		} else {
 			//Route::ErrorPage404();
 		}
 
-        $controller = new $controller_name;
-        
-		$action = $action_name;
-        
-		
-		if(method_exists($controller, $action))
-		{
+		$controller = new $controller_name;
+
+		if (str_contains($action_name, '?')) {
+			$action = explode("?", $action_name)[0];
+		} else {
+			$action = $action_name;
+		}
+
+		if (method_exists($controller, $action)) {			
 			$controller->$action();
-		}
-		else
-		{
+		} else {
 			//Route::ErrorPage404();
 		}
-    }
+	}
 
-    function ErrorPage404()
+	function ErrorPage404()
 	{
-        $host = 'http://'.$_SERVER['HTTP_HOST'].'/';
-        header('HTTP/1.1 404 Not Found');
+		$host = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+		header('HTTP/1.1 404 Not Found');
 		header("Status: 404 Not Found");
-		header('Location:'.$host.'404');
-    }
+		header('Location:' . $host . '404');
+	}
 }

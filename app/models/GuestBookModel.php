@@ -27,15 +27,15 @@ class GuestBookModel extends Model
     function __construct()
     {
         $this->validator = new GuestBookValidator();
-        $this->getCommentaries($this->directory . $this->commonFile);
+        $this->commentaries = $this->sortByDate($this->getCommentaries($this->directory . $this->commonFile));
     }
 
     function validateForm($post_array)
     {
         unset($post_array["submit"]);
         if (!empty($_FILES['uploadedFile']['name'])) {
-            $this->uploadedFile = $post_array["uploadedFile"];
-            $this->readFile();
+            $file = $_FILES['uploadedFile'];
+            $this->readFile($file);
         } else {
             if (!empty($post_array["email"])) {
                 $this->fields["email"] = $post_array["email"];
@@ -53,17 +53,17 @@ class GuestBookModel extends Model
 
             if ($this->validator->isErrorExist == false) {
                 $this->fields['date'] = date('d.m.y');
-                $this->addComment();
+                $this->addComment($this->fields);
                 $this->fields = $this->emptyFields;
             }
         }
     }
 
-    public function addComment()
+    public function addComment($fields)
     {
-        array_push($this->commentaries, $this->fields);
+        array_push($this->commentaries, $fields);
         $data = json_encode($this->commentaries, JSON_UNESCAPED_UNICODE);
-        $file = fopen($this->path, "w+");
+        $file = fopen($this->directory . $this->commonFile, "w+");
         fwrite($file, $data);
         fclose($file);
     }
@@ -72,17 +72,49 @@ class GuestBookModel extends Model
     {
         $data = file_get_contents($path);
         if (!empty($data)) {
-            $this->commentaries = json_decode(file_get_contents($path), true);
+            return json_decode($data, true);
         }
     }
 
-    public function readFile()
+    public function readFile($file)
     {
-        $uploadFilePath = $this->directory . basename($_FILES['uploadedFile']['name']);
-        if (move_uploaded_file($_FILES['uploadedFile']['tmp_name'], $uploadFilePath)) {
-            $this->getCommentaries($uploadFilePath);
+        $uploadFilePath = $this->directory . basename($file['name']);
+        if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
+            $commentaries = $this->getCommentaries($uploadFilePath);
+            foreach ($commentaries as $comment) {
+                $this->addComment($comment);
+            }
         } else {
             echo "Ошибка загрузки!\n";
         }
+    }
+    /*
+    public function readFile($file)
+    {
+        $uploadFilePath = $this->directory . basename($file['name']);
+        if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
+            echo $uploadFilePath;
+            $newComments = $this->getCommentaries($uploadFilePath);
+            foreach
+            echo $newComments[0]['name'];
+            $this->addComment($newComments);
+        } else {
+            echo "Ошибка загрузки!\n";
+        }
+    }
+    */
+
+    private function sortByDate($values)
+    {
+        for ($i = 0; $i < sizeOf($values) - 1; $i++) {
+            for ($j = $i + 1; $j < sizeOf($values); $j++) {
+                if ($values[$i]['date'] < $values[$j]['date']) {
+                    $temp = $values[$i]['date'];
+                    $values[$i]['date'] = $values[$j]['date'];
+                    $values[$j]['date'] = $temp;
+                }
+            }
+        }
+        return $values;
     }
 }

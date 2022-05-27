@@ -14,9 +14,4 @@ class GuestBookValidator extends FormValidator
         "email" => ["isNotEmpty", "isEmail"],
         "comment" => ["isNotEmpty"]
     ];
-
-    function validate($post_array)
-    {
-        parent::validate($post_array);
-    }
 }

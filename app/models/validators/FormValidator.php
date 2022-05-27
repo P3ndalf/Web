@@ -84,6 +84,13 @@ class FormValidator
         }
     }
 
+    protected function isImageLink($data)
+    {
+        if (!preg_match('//', $data)) {
+            return "Выберите .jpg или .png форматы файлов";
+        }
+    }
+
     protected function setRule($field_name, $rules)
     {
         if ($rules) {
@@ -117,6 +124,10 @@ class FormValidator
                 }
             case "isMinAnswSize": {
                     $result = $this->isMinAnswSize($value, 19);
+                    break;
+                }
+            case "isImageLink": {
+                    $result = $this->isImageLink($value);
                     break;
                 }
         }

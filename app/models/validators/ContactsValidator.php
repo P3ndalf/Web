@@ -20,9 +20,4 @@ class ContactsValidator extends FormValidator
         "dateValue" => ["isNotEmpty", "isDate"],
         "age" => ["isNotEmpty"]
     ];
-
-    function validate($post_array)
-    {
-        parent::validate($post_array);
-    }
 }
