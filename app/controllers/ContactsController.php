@@ -3,8 +3,7 @@ class ContactsController extends Controller
 {
     function __construct()
     {
-        parent::__construct();
-        $this->model = new ContactsModel();
+        parent::__construct();        
     }
 
     function indexAction()

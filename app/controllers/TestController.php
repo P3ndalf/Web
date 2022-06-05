@@ -4,7 +4,6 @@ class TestController extends Controller
     function __construct()
     {
         parent::__construct();
-        $this->model = new TestModel();
     }
 
     function indexAction()

@@ -3,8 +3,7 @@ class CreateBlogController extends Controller
 {
     function __construct()
     {
-        parent::__construct();
-        $this->model = new CreateBlogModel();
+        parent::__construct();       
     }
 
     function indexAction()

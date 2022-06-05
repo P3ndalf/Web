@@ -1,58 +1,55 @@
 <?php
 class Route
 {
-
 	static function start()
 	{
-		$controller_name = 'Home';
-		$action_name = 'index';
-
-		$routes = explode('/', $_SERVER['REQUEST_URI']);
-
-		if (!empty($routes[1])) {
-			$controller_name = $routes[1];
-		}
-
-		if (!empty($routes[2])) {
-			$action_name = $routes[2];
-		}
-
-		$model_name = $controller_name . 'Model';
-		$controller_name = $controller_name . 'Controller';
-		if (str_contains($action_name, '?')) {
-			$action_name = substr_replace($action_name, 'Action', strpos($action_name, '?'), 0);
+		if(isset($_REQUEST['controller'])) {
+			$controllerRequest = $_REQUEST['controller'] ? $_REQUEST['controller']: 'Home';
 		} else {
-			$action_name = $action_name . 'Action';
+			$controllerRequest = 'Home';
 		}
-
-		$model_file = strtolower($model_name) . '.php';
-		$model_path = "app/models/" . $model_file;
-
-		if (file_exists($model_path)) {
-			include $model_path;
-		}
-
-		$controller_file = strtolower($controller_name) . '.php';
-
-		$controller_path = "app/controllers/" . $controller_file;
-		if (file_exists($controller_path)) {
-			include $controller_path;
+		if(isset($_REQUEST['action'])) {
+			$actionRequest = $_REQUEST['action'] ? $_REQUEST['action']: 'index';
 		} else {
-			//Route::ErrorPage404();
+			$actionRequest = 'index';
+		}
+		
+		// Формирование контроллера 
+		$controllerClass = $controllerRequest . "Controller";
+		$controllerPath = "app/controllers/" . $controllerClass . ".php";
+
+		if (file_exists($controllerPath)) {
+			include $controllerPath;
+		} else {
+			echo 'error in '. $controllerPath;
+		}
+		// Создание экземлпяра контроллера
+		$controller = new $controllerClass;
+
+		// Формирование модели
+		$modelClass = $controllerRequest . 'Model';
+		$modelPath = "app/models/" . $modelClass . '.php';
+
+		if (file_exists($modelPath)) {
+			include $modelPath;
+
+			// Создание экземляра модели
+			$model = new $modelClass;
+			// Инициализация модели
+			$controller->model = $model;
 		}
 
-		$controller = new $controller_name;
-
-		if (str_contains($action_name, '?')) {
-			$action = explode("?", $action_name)[0];
+		// Формирование экшена контроллера
+		if (str_contains($actionRequest, '?')) {
+			$actionName = explode("?", substr_replace($action_name, 'Action', strpos($action_name, '?'), 0))[0];
 		} else {
-			$action = $action_name;
+			$actionName = $actionRequest . 'Action';
 		}
 
-		if (method_exists($controller, $action)) {			
-			$controller->$action();
+		if (method_exists($controller, $actionName)) {
+			$controller->$actionName();
 		} else {
-			//Route::ErrorPage404();
+			echo 'error in '. $actionName;
 		}
 	}
 

@@ -4,7 +4,6 @@ class GuestBookController extends Controller
     function __construct()
     {
         parent::__construct();
-        $this->model = new GuestBookModel();
     }
 
     function indexAction()

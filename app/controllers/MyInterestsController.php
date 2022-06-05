@@ -4,7 +4,6 @@ class MyInterestsController extends Controller
     function __construct()
     {
         parent::__construct();
-        $this->model = new MyInterestsModel();
     }
 
     function indexAction()
