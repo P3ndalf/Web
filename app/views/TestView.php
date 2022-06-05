@@ -1,3 +1,7 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+?>
+
 <div class="main-center justify-content-center">
     <div class="container-md">
         <h1 class="text-center mb-3">
@@ -77,30 +81,33 @@
                 <button class="btn btn-outline-danger" type="reset" value="reset">Очистить форму</button>
             </div>
         </form>
-        <div class="mb-5">
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Имя</th>
-                        <th scope="col">Фамилия</th>
-                        <th scope="col">Ответ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    foreach ($data->answers as $value) {
-                        $answer = (array)$value;
-                        echo '<tr>';
-                        echo '  <th scope="row">' . $answer['id'] . '</th>';
-                        echo '  <td>' . $answer['name'] . '</td>';
-                        echo '  <td>' . $answer['lastName'] . '</td>';
-                        echo '  <td>' . $answer['percent'] . '</td>';
-                        echo '<tr>';
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+
+        <?php if (isset($_SESSION['user'])) {
+            echo '<div class="mb-5">';
+            echo '<table class="table table-sm">';
+            echo '    <thead>';
+            echo '        <tr>';
+            echo '            <th scope="col">Id</th>';
+            echo '            <th scope="col">Имя</th>';
+            echo '            <th scope="col">Фамилия</th>';
+            echo '            <th scope="col">Ответ</th>';
+            echo '        </tr>';
+            echo '    </thead>';
+            echo '    <tbody>';
+            foreach ($data->answers as $value) {
+                $answer = (array)$value;
+                echo '<tr>';
+                echo '  <th scope="row">' . $answer['id'] . '</th>';
+                echo '  <td>' . $answer['name'] . '</td>';
+                echo '  <td>' . $answer['lastName'] . '</td>';
+                echo '  <td>' . $answer['percent'] . '</td>';
+                echo '<tr>';
+            }
+            echo '    </tbody>';
+            echo '</table>';
+            echo '</div>';
+        }
+        ?>
+
     </div>
 </div>

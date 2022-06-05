@@ -44,7 +44,7 @@ class Route
 		$route['role'] = $roleRequest;
 
 		// Формирование контроллера 
-		if (file_exists("app/${rolePath}controllers/${controllerRequest}Controller.php")) {
+		if (file_exists("app/${rolePath}controllers/${roleClassPrefix}${controllerRequest}Controller.php")) {
 			$controllerClass = $roleClassPrefix . $controllerRequest . "Controller";
 			$controllerPath = "app/${rolePath}controllers/${controllerClass}.php";
 		} else {
@@ -61,8 +61,13 @@ class Route
 		$controller = new $controllerClass($route);
 
 		// Формирование модели
-		$modelClass = $controllerRequest . 'Model';
-		$modelPath = "app/models/" . $modelClass . '.php';
+		if (file_exists("app/${rolePath}models/${roleClassPrefix}${controllerRequest}Model.php")) {
+			$modelClass = $roleClassPrefix . $controllerRequest . "Model";
+			$modelPath = "app/${rolePath}models/${modelClass}.php";
+		} else {
+			$modelClass = $controllerRequest . 'Model';
+			$modelPath = "app/models/" . $modelClass . '.php';
+		}
 
 		if (file_exists($modelPath)) {
 			include $modelPath;

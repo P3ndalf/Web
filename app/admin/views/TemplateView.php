@@ -1,3 +1,7 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -23,29 +27,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="/AboutMe/">Обо мне</a>
-            </li>
-            <li class="nav-item">
-              <div id="dropDownMenu">
-                <a class="nav-link" href="/MyInterests/">Мои интересы</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Education/">Учеба</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Gallery/">Фотоальбом</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/Contacts/">Контакты</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="/Test/">Тест</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Медиа</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="/CreateBlog/">Создание блога</a>
+                <a class="dropdown-item" href="/Analitics/">Аналитика сайта</a>
                 <a class="dropdown-item" href="/Blog/">Блог</a>
               </div>
             </li>
@@ -56,7 +43,7 @@
               <span class="nav-link" id="date"></span>
             </li>
             <li class="nav-item">
-              <span class="nav-link">Hello, pidor</span>
+              <span class="nav-link">Hello, admin</span>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/User/logout">Выйти</a>
@@ -67,15 +54,16 @@
     </nav>
   </header>
 
-  <?php include 'app/views/' . $content_view; ?>
+  <?php
+  if (file_exists('app/' . $_SESSION['user']['role'] . '/views/' . $content_view)) {
+    include 'app/' . $_SESSION['user']['role'] . '/views/' . $content_view;
+  } else {
+    include 'app/views/' . $content_view;
+  }
+  ?>
 
 </body>
 
-<footer class="border-top footer bg-light">
-  <div class="container text-muted d-flex justify-content-center">
-    Прав нет и не будет
-  </div>
-</footer>
 <script src="../../js/Date.js"></script>
 <script src="../../js/Interests.js"></script>
 <script src="../../js/DropDownMenu.js"></script>

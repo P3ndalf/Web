@@ -71,8 +71,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
     </nav>
   </header>
 
-  <?php include 'app/views/' . $content_view; ?>
-
+  <?php
+  if (file_exists('app/' . $_SESSION['user']['role'] . '/views/' . $content_view)) {
+    include 'app/' . $_SESSION['user']['role'] . '/views/' . $content_view;
+  } else {
+    include 'app/views/' . $content_view;
+  }
+  ?>
 </body>
 
 <footer class="border-top footer bg-light">
