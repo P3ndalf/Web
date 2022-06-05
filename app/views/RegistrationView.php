@@ -1,10 +1,10 @@
 <div class="main-center justify-content-center">
     <div class="container-md">
         <h1 class="text-center mb-3">
-            Вход
+            Регистрация
         </h1>
-        <a href="/User/registration">Переход на регистрацию</a>
-        <form  method="post">
+        <a href="/User/login">Переход на авторизацию</a>
+        <form method="post">
             <div class="form-group mb-3">
                 <label for="inputNameId">Введите имя</label>
                 <input type="text" class="form-control" value="<?php echo $data->fields['name'] ?>" placeholder="Ваше имя" name="name">
@@ -17,7 +17,7 @@
             </div>
 
             <div class="d-flex mb-3">
-                <input class="btn btn-outline-dark mr-3" type="submit" name="submit" value="Войти">
+                <input class="btn btn-outline-dark mr-3" type="submit" name="submit" value="Зарегестрироваться">
                 <button class="btn btn-outline-danger" type="reset" value="reset">Очистить форму</button>
             </div>
         </form>

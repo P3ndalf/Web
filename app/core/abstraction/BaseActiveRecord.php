@@ -25,7 +25,7 @@ class BaseActiveRecord
     {
         if (!isset($this->pdo)) {
             try {
-                $dbAccess = require_once 'app/config/DbAccess.php';
+                $dbAccess = require 'app/config/DbAccess.php';
                 $this->pdo = new PDO("mysql:dbname=" . $dbAccess['name'] . "; host=" . $dbAccess['host'] . "; char-set=utf8", $dbAccess['user'], $dbAccess['password']);
             } catch (PDOException $ex) {
                 die("Connection to DB error: $ex");
@@ -42,14 +42,17 @@ class BaseActiveRecord
         }
     }
 
-    public function getCount() {
+    public function getCount()
+    {
         $count = $this->pdo->query("SELECT COUNT(*) FROM " . $this->tableName)->fetch();
         return (int)$count[0];
     }
 
-    public function find($id)
+    public function find($statement)
     {
-        $sql = "SELECT * FROM " . $this->tableName . " WHERE id=$id";
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $statement;
+
+
         $stmt = $this->pdo->query($sql);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -97,7 +100,7 @@ class BaseActiveRecord
             $sql = "UPDATE " . $this->tableName . " SET " . join(', ', array_slice($positionedList, 1)) . " WHERE ID = " . $this->id;
         } else {
             $sql = "INSERT INTO " . $this->tableName . " (" . join(', ', array_slice($fieldValueModel->fields, 1)) . ") VALUES(" . join(', ', array_slice($fieldValueModel->values, 1)) . ")";
-        }        
+        }
         return $this->pdo->query($sql);
     }
 

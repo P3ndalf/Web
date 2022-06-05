@@ -29,7 +29,6 @@ class UserModel extends Model
         $this->validator->validate($this->fields);
 
         if ($this->validator->isErrorExist == false) {
-            $this->save();
             return true;
         } else {
             return false;
@@ -39,7 +38,7 @@ class UserModel extends Model
     function save()
     {
         $this->userRecord->name = $this->fields["name"];
-        $this->userRecord->password = $this->fields["password"];
+        $this->userRecord->password =  md5($this->fields["password"]);
         if ($this->fields['name'] == 'admin' && $this->fields['password'] == 'admin') {
             $this->userRecord->role = 'admin';
         } else {
@@ -47,5 +46,33 @@ class UserModel extends Model
         }
 
         $this->userRecord->save();
+    }
+
+    function isExist($name, $password)
+    {
+        $password = md5($password);
+
+        $stmt = "name='${name}' and password='${password}'";
+
+        if ($this->userRecord->find($stmt)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function getUser($name, $password)
+    {
+        $password = md5($password);
+
+        $stmt = "name='${name}' and password='${password}'";
+
+        $user = $this->userRecord->find($stmt);
+        if ($user) {
+            return array(
+                'name' => $user->name,
+                'role' => $user->role
+            );
+        }
     }
 }
