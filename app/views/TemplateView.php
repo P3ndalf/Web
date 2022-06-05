@@ -60,10 +60,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
               <span class="nav-link" id="date"></span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/User/registration">Регистрация</a>
+              <a class="nav-link" href="/Registration/registration">Регистрация</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/User/login">Войти</a>
+              <a class="nav-link" href="/Login/login">Войти</a>
             </li>
           </ul>
         </div>

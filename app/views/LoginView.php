@@ -3,8 +3,8 @@
         <h1 class="text-center mb-3">
             Вход
         </h1>
-        <a href="/User/registration">Переход на регистрацию</a>
-        <form  method="post">
+        <a href="/Registration/registration">Переход на регистрацию</a>
+        <form method="post" enctype="multipart/form-data">
             <div class="form-group mb-3">
                 <label for="inputNameId">Введите имя</label>
                 <input type="text" class="form-control" value="<?php echo $data->fields['name'] ?>" placeholder="Ваше имя" name="name">

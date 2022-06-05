@@ -8,6 +8,8 @@ class ActiveRecordUser extends BaseActiveRecord
 {
     public $id;
     public $name;
+    public $lastname;
+    public $email;
     public $password;
     public $role;
 
