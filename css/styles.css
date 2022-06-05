@@ -15,8 +15,7 @@ footer{
   left: 0;
   bottom: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
+  display: block;
   height: 60px;
   font-size: 20px !important;
 }
@@ -247,7 +246,7 @@ ul#dropDownUl>li{
 }
 
 .popover{
-  top:inherit
+  top:inherit;
   position: fixed;
   width: 250px;
   -webkit-box-sizing: border-box;
@@ -259,19 +258,13 @@ ul#dropDownUl>li{
   border: 1px solid black;
 }
 
-#app {
-  display: flex;
-  height: 100%;
-}
-
 .album {
-  margin: auto;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   justify-content: center;
   gap: 10px;
-  width: 70%;
+  width: 80%;
   max-width: 1200px;
 }
 

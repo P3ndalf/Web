@@ -7,6 +7,8 @@ class FormValidator
 
     public $predicates = [];
 
+    public $isErrorExist = false;
+
     protected function isNotEmpty($data)
     {
         if (empty($data)) {
@@ -82,6 +84,13 @@ class FormValidator
         }
     }
 
+    protected function isImageLink($data)
+    {
+        if (!preg_match('//', $data)) {
+            return "Выберите .jpg или .png форматы файлов";
+        }
+    }
+
     protected function setRule($field_name, $rules)
     {
         if ($rules) {
@@ -115,6 +124,10 @@ class FormValidator
                 }
             case "isMinAnswSize": {
                     $result = $this->isMinAnswSize($value, 19);
+                    break;
+                }
+            case "isImageLink": {
+                    $result = $this->isImageLink($value);
                     break;
                 }
         }
@@ -153,8 +166,7 @@ class FormValidator
             }
             if ($flag == true) {
                 $this->errMessages[$pkey] = '<div style="color: red;">' . $error . '</div>';
-            } else {
-                $this->errMessages[$pkey] = '<div style="color: green;"> Верно!</div>';
+                $this->isErrorExist = true;
             }
         }
     }

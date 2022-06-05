@@ -4,7 +4,6 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <link href="../../css/styles.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <script src="https://unpkg.com/vue@next"></script>
@@ -43,6 +42,16 @@
             <li class="nav-item">
               <a class="nav-link" href="/Test">Тест</a>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Медиа</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/CreateBlog">Создание блога</a>
+                <a class="dropdown-item" href="/Blog">Блог</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/GuestBook">Для гостей</a>
+            </li>
             <li class="nav-item">
               <span class="nav-link" id="date"></span>
             </li>
@@ -56,7 +65,7 @@
 
 </body>
 
-<footer class="border-top footer  bg-light">
+<footer class="border-top footer bg-light">
   <div class="container text-muted d-flex justify-content-center">
     Прав нет и не будет
   </div>

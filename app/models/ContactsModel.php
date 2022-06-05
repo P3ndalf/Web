@@ -1,5 +1,5 @@
 <?php
-include 'D:/Education/University/Web/Solutions/new_web/app/models/validators/ContactsValidator.php';
+include 'D:/OpenServer/domains/newweb/app/models/validators/ContactsValidator.php';
 class ContactsModel extends Model
 {
     public $fields = [
