@@ -1,3 +1,7 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -56,7 +60,7 @@
               <span class="nav-link" id="date"></span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Login/">Войти</a>
+              <a class="nav-link" href="/User/login">Войти</a>
             </li>
           </ul>
         </div>

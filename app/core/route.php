@@ -16,8 +16,8 @@ class Route
 		} else {
 			$actionRequest = 'index';
 		}
-		if (isset($_SESSION['role'])) {
-			$roleRequest = $_REQUEST['role'];
+		if (isset($_SESSION['user']['role'])) {
+			$roleRequest = $_SESSION['user']['role'];
 		} else {
 			$roleRequest = '';
 		}
@@ -39,14 +39,14 @@ class Route
 
 		$route = [];
 
-		$route['controllerName'] = $controllerRequest;
+		$route['controllerRequest'] = $controllerRequest;
 		$route['actionRequest'] = $actionRequest;
 		$route['role'] = $roleRequest;
 
 		// Формирование контроллера 
-		if( file_exists("app/${rolePath}controllers/${controllerRequest}Controller.php")) {
+		if (file_exists("app/${rolePath}controllers/${controllerRequest}Controller.php")) {
 			$controllerClass = $roleClassPrefix . $controllerRequest . "Controller";
-			$controllerPath = "app/${rolePath}controllers/${controllerClass}.php";	
+			$controllerPath = "app/${rolePath}controllers/${controllerClass}.php";
 		} else {
 			$controllerClass = $controllerRequest . "Controller";
 			$controllerPath = "app/controllers/${controllerClass}.php";

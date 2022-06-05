@@ -3,15 +3,15 @@
         <h1 class="text-center mb-3">
             Вход
         </h1>
-        <form>
+        <form  method="post">
             <div class="form-group mb-3">
                 <label for="inputNameId">Введите имя</label>
-                <input type="name" class="form-control" value="<?php echo $data->fields['name'] ?>" placeholder="Ваше имя" name="name">
+                <input type="text" class="form-control" value="<?php echo $data->fields['name'] ?>" placeholder="Ваше имя" name="name">
                 <?php echo $data->validator->errMessages['name'] ?>
             </div>
             <div class="form-group mb-3">
                 <label for="inputPasswordId">Введите пароль</label>
-                <input type="password" class="form-control" value="<?php echo $data->fields['password'] ?>" placeholder="Ваш пароль" name="password">
+                <input type="text" class="form-control" value="<?php echo $data->fields['password'] ?>" placeholder="Ваш пароль" name="password">
                 <?php echo $data->validator->errMessages['password'] ?>
             </div>
 

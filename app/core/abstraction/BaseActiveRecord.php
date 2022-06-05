@@ -25,7 +25,7 @@ class BaseActiveRecord
     {
         if (!isset($this->pdo)) {
             try {
-                $dbAccess = require 'app/config/DbAccess.php';
+                $dbAccess = require_once 'app/config/DbAccess.php';
                 $this->pdo = new PDO("mysql:dbname=" . $dbAccess['name'] . "; host=" . $dbAccess['host'] . "; char-set=utf8", $dbAccess['user'], $dbAccess['password']);
             } catch (PDOException $ex) {
                 die("Connection to DB error: $ex");
@@ -97,9 +97,7 @@ class BaseActiveRecord
             $sql = "UPDATE " . $this->tableName . " SET " . join(', ', array_slice($positionedList, 1)) . " WHERE ID = " . $this->id;
         } else {
             $sql = "INSERT INTO " . $this->tableName . " (" . join(', ', array_slice($fieldValueModel->fields, 1)) . ") VALUES(" . join(', ', array_slice($fieldValueModel->values, 1)) . ")";
-        }
-
-        var_dump($sql);
+        }        
         return $this->pdo->query($sql);
     }
 

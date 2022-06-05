@@ -3,7 +3,7 @@ class Controller
 {
     public $model;
     public $view;
-    private $route = [];
+    protected $route = [];
 
     function __construct($route = [])
     {
