@@ -1,11 +1,6 @@
 <?php
 class CreateBlogController extends Controller
 {
-    function __construct()
-    {
-        parent::__construct();       
-    }
-
     function indexAction()
     {
         if (sizeOf($_POST)) {

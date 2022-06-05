@@ -3,10 +3,12 @@ class Controller
 {
     public $model;
     public $view;
+    private $route = [];
 
-    function __construct()
+    function __construct($route = [])
     {
-        $this->view = new View();
+        $this->route = $route;
+        $this->view = new View($this->route['role']);
     }
 
     function indexAction()

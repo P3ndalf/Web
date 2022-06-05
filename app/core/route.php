@@ -1,30 +1,64 @@
 <?php
+
+if (session_status() !== PHP_SESSION_ACTIVE) session_start();
+
 class Route
 {
 	static function start()
 	{
-		if(isset($_REQUEST['controller'])) {
-			$controllerRequest = $_REQUEST['controller'] ? $_REQUEST['controller']: 'Home';
+		if (isset($_REQUEST['controller'])) {
+			$controllerRequest = $_REQUEST['controller'] ? $_REQUEST['controller'] : 'Home';
 		} else {
 			$controllerRequest = 'Home';
 		}
-		if(isset($_REQUEST['action'])) {
-			$actionRequest = $_REQUEST['action'] ? $_REQUEST['action']: 'index';
+		if (isset($_REQUEST['action'])) {
+			$actionRequest = $_REQUEST['action'] ? $_REQUEST['action'] : 'index';
 		} else {
 			$actionRequest = 'index';
 		}
-		
+		if (isset($_SESSION['role'])) {
+			$roleRequest = $_REQUEST['role'];
+		} else {
+			$roleRequest = '';
+		}
+
+		switch ($roleRequest) {
+			case 'admin':
+				$rolePath = $roleRequest . '/';
+				$roleClassPrefix = 'Admin';
+				break;
+			case 'user':
+				$rolePath = $roleRequest . '/';
+				$roleClassPrefix = 'User';
+				break;
+			default:
+				$rolePath = '';
+				$roleClassPrefix = '';
+				break;
+		}
+
+		$route = [];
+
+		$route['controllerName'] = $controllerRequest;
+		$route['actionRequest'] = $actionRequest;
+		$route['role'] = $roleRequest;
+
 		// Формирование контроллера 
-		$controllerClass = $controllerRequest . "Controller";
-		$controllerPath = "app/controllers/" . $controllerClass . ".php";
+		if( file_exists("app/${rolePath}controllers/${controllerRequest}Controller.php")) {
+			$controllerClass = $roleClassPrefix . $controllerRequest . "Controller";
+			$controllerPath = "app/${rolePath}controllers/${controllerClass}.php";	
+		} else {
+			$controllerClass = $controllerRequest . "Controller";
+			$controllerPath = "app/controllers/${controllerClass}.php";
+		}
 
 		if (file_exists($controllerPath)) {
 			include $controllerPath;
 		} else {
-			echo 'error in '. $controllerPath;
+			echo 'error in ' . $controllerPath;
 		}
 		// Создание экземлпяра контроллера
-		$controller = new $controllerClass;
+		$controller = new $controllerClass($route);
 
 		// Формирование модели
 		$modelClass = $controllerRequest . 'Model';
@@ -49,7 +83,7 @@ class Route
 		if (method_exists($controller, $actionName)) {
 			$controller->$actionName();
 		} else {
-			echo 'error in '. $actionName;
+			echo 'error in ' . $actionName;
 		}
 	}
 

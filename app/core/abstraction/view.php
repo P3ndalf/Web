@@ -1,10 +1,16 @@
 <?php
 class View
 {
-    private $template_view = 'TemplateView.php';
+    protected $template_view = 'TemplateView.php';
+    private $role;
+
+    public function __construct($role = '')
+    {
+        $this->role = $role;
+    }
 
     function generate($content_view, $data = NULL)
     {
-        include 'app/views/'.$this->template_view;
+        include "app/" . $this->role . "views/" . $this->template_view;
     }
 }

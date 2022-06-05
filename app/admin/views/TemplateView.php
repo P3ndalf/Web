@@ -56,7 +56,7 @@
               <span class="nav-link" id="date"></span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Login/">Войти</a>
+              <a class="nav-link" href="/GuestBook/">Hello, pidor</a>
             </li>
           </ul>
         </div>
