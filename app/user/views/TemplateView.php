@@ -60,10 +60,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
               <span class="nav-link" id="date"></span>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Registration/registration">Регистрация</a>
+              <span class="nav-link">Hello, <?php echo $_SESSION['user']['name'] ?></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/Login/login">Войти</a>
+              <a class="nav-link" href="/User/logout">Выйти</a>
             </li>
           </ul>
         </div>
@@ -72,16 +72,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) session_start();
   </header>
 
   <?php
-  if (isset($_SESSION['user']) && isset($_SESSION['user']['role'])) {
-    if (file_exists('app/' . $_SESSION['user']['role'] . '/views/' . $content_view)) {
-      include 'app/' . $_SESSION['user']['role'] . '/views/' . $content_view;
-    } else {
-      include 'app/views/' . $content_view;
-    }
+  if (file_exists('app/' . $_SESSION['user']['role'] . '/views/' . $content_view)) {
+    include 'app/' . $_SESSION['user']['role'] . '/views/' . $content_view;
   } else {
     include 'app/views/' . $content_view;
   }
-
   ?>
 </body>
 

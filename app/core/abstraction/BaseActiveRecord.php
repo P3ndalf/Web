@@ -42,14 +42,17 @@ class BaseActiveRecord
         }
     }
 
-    public function getCount() {
+    public function getCount()
+    {
         $count = $this->pdo->query("SELECT COUNT(*) FROM " . $this->tableName)->fetch();
         return (int)$count[0];
     }
 
-    public function find($id)
+    public function find($statement)
     {
-        $sql = "SELECT * FROM " . $this->tableName . " WHERE id=$id";
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE " . $statement;
+
+
         $stmt = $this->pdo->query($sql);
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -98,8 +101,6 @@ class BaseActiveRecord
         } else {
             $sql = "INSERT INTO " . $this->tableName . " (" . join(', ', array_slice($fieldValueModel->fields, 1)) . ") VALUES(" . join(', ', array_slice($fieldValueModel->values, 1)) . ")";
         }
-
-        var_dump($sql);
         return $this->pdo->query($sql);
     }
 

@@ -88,21 +88,6 @@ class GuestBookModel extends Model
             echo "Ошибка загрузки!\n";
         }
     }
-    /*
-    public function readFile($file)
-    {
-        $uploadFilePath = $this->directory . basename($file['name']);
-        if (move_uploaded_file($file['tmp_name'], $uploadFilePath)) {
-            echo $uploadFilePath;
-            $newComments = $this->getCommentaries($uploadFilePath);
-            foreach
-            echo $newComments[0]['name'];
-            $this->addComment($newComments);
-        } else {
-            echo "Ошибка загрузки!\n";
-        }
-    }
-    */
 
     private function sortByDate($values)
     {

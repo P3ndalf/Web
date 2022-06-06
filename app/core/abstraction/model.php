@@ -11,7 +11,7 @@ class Model
 
     function validateForm($post_data)
     {
-        $this->validator->validate($post_data);
+        return $this->validator->validate($post_data);
     }
 
     function getData(){
