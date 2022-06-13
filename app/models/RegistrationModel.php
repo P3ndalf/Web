@@ -21,8 +21,6 @@ class RegistrationModel extends Model
 
     function validateForm($post_array)
     {
-        
-        echo $post_array['name'];
         if (!empty($post_array['name'])) {
             $this->fields['name'] = $post_array['name'];
         }
@@ -44,14 +42,14 @@ class RegistrationModel extends Model
     {
         $this->userRecord->name = $this->fields["name"];
         $this->userRecord->password =  md5($this->fields["password"]);
-        $this->userRecord->lastname = $this->fields["lastname"];
+        $this->userRecord->lastname = $this->fields["lastName"];
         $this->userRecord->email = $this->fields["email"];
         if ($this->fields['name'] == 'admin' && $this->fields['password'] == 'admin') {
             $this->userRecord->role = 'admin';
         } else {
             $this->userRecord->role = 'user';
         }
-        $this->userRecord->save();
+        return $this->userRecord->save();
     }
 
     function isExist($name, $password)
@@ -65,5 +63,14 @@ class RegistrationModel extends Model
         } else {
             return false;
         }
+    }
+
+    function getByFields($name, $email, $password)
+    {
+        $password = md5($password);
+
+        $stmt = "name='${name}' and password='${password}' and email='${email}'";
+
+        return $this->userRecord->find($stmt);
     }
 }

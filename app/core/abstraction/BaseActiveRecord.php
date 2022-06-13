@@ -108,6 +108,9 @@ class BaseActiveRecord
     {
         foreach ($this->dbFields as $field => $type) {
             $value = $this->$field;
+            if (is_array($value)) {
+                $value = null;
+            }
             if (strpos($type, 'int') === false) $value = "'$value'";
             $fields[] = $field;
             $values[] = $value;
@@ -130,6 +133,28 @@ class BaseActiveRecord
     {
         $sql = "SELECT * FROM " . $this->tableName . " ORDER BY " . $descParameter . " DESC LIMIT " . $start . ', ' . $count;
         $stmt = $this->pdo->query($sql);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$rows)
+            return null;
+
+        $ar_objs = array();
+        foreach ($rows as $row) {
+            $obj = new static();
+            foreach ($row as $key => $value) {
+                $obj->$key = $value;
+            }
+            array_push($ar_objs, $obj);
+        }
+
+        return $ar_objs;
+    }
+
+    public function getData($statement = "")
+    {
+        $sql = "SELECT * FROM " . $this->tableName . $statement;
+        $stmt = $this->pdo->query($sql);
+
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$rows)

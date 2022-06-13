@@ -15,9 +15,10 @@ class LoginController extends Controller
         if ($validationResult == true) {
             $user = $this->model->getUser($_POST['name'], $_POST['password']);
             if ($user) {
-                $_SESSION['user']['role'] = $user['role'];
-                $_SESSION['user']['name'] = $user['name'];
-                $this->view->redirect("Home/");
+                $_SESSION['user']['role'] = $user->role;
+                $_SESSION['user']['name'] = $user->name;
+                $_SESSION['user']['id'] = $user->id;
+                $this->view->redirect("/Home/");
             } else {
                 echo 'Такого пользователя не существует';
             }

@@ -1,16 +1,16 @@
-body{
+body {
   background: url("../../assets/bg.png") no-repeat;
   background-size: cover;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   font-family: 'Pacifico';
   font-size: 25px;
 }
 
-header{
+header {
   font-size: 20px !important;
 }
 
-footer{
+footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -20,38 +20,38 @@ footer{
   font-size: 20px !important;
 }
 
-.menu-left{
-  display:flex;
+.menu-left {
+  display: flex;
   float: left;
   margin-top: 90px;
   margin-left: 10px;
 }
 
-.main-center{
+.main-center {
   display: flex;
   align-items: center;
   margin: 50px;
 }
 
-.back-up{
+.back-up {
   position: fixed;
-  bottom: 75px; 
-  left:10px;
+  bottom: 75px;
+  left: 10px;
 }
 
-.card-group{
-  margin: 10px 0px 10px 0px ;
+.card-group {
+  margin: 10px 0px 10px 0px;
   padding: 0;
 }
 
-.card{
+.card {
   background-color: white;
   border-radius: 0.25rem;
-  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   margin: 0px 5px 15px 5px;
 }
 
-.card-img{
+.card-img {
   height: 294px;
   overflow: hidden;
 }
@@ -101,7 +101,7 @@ ul.navbar-nav>li.nav-item a.nav-link:hover {
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   padding: 0px;
 }
@@ -110,8 +110,8 @@ ul.navbar-nav>li.nav-item a.nav-link:hover {
   display: block;
 }
 
-ul#dropDownUl>li{
-  display:inline-block;
+ul#dropDownUl>li {
+  display: inline-block;
 }
 
 .navbar-nav #dropDownMenu #dropDownUl a {
@@ -133,43 +133,6 @@ ul#dropDownUl>li{
   text-align: left;
 }
 
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-  padding-top: 60px;
-  backdrop-filter: blur(10px);
-}
-
-/* Modal Content/Box */
-#imageModal .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 0 auto;
-  border: 1px solid #888;
-  width: 400px; /* Could be more or less, depending on screen size */
-}
-#imageModal .modal-header{
-  background-color: #fefefe;
-  margin: 0% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 400px;
-  border-radius: 0% 0% 15px 15px;
-}
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
 /* The Close Button (x) */
 .close {
   position: absolute;
@@ -186,67 +149,16 @@ ul#dropDownUl>li{
   cursor: pointer;
 }
 
-.valid{
-  color:green;
+.valid {
+  color: green;
 }
 
-.invalid{
-  color:red;
+.invalid {
+  color: red;
 }
 
-/*Add New svg arrows*/
-
-.modal-header svg {
-    width: 100px;
-    height: auto;
-    margin: 0 2rem;
-    cursor: pointer;
-    overflow: visible;
-}
-.modal-header svg polygon, 
-.modal-header svg path {
-    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-    fill: #000000;
-}
-.modal-header svg:hover polygon, 
-.modal-header svg:hover path {
-    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
-    fill: #000;
-}
-.modal-header svg:hover .modal-header-pl {
-    animation: modal-header-anim 1s cubic-bezier(0.2, 1, 0.3, 1) infinite;
-}
-.modal-header svg:hover .modal-header-pl-fixed {
-    animation: modal-header-fixed-anim 1s cubic-bezier(0.2, 1, 0.3, 1) infinite;
-}
- 
-@keyframes modal-header-anim {
-    0% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    5% {
-        transform: translateX(-0.1rem);
-    }
-    100% {
-        transform: translateX(1rem);
-        opacity: 0;
-    }
-}
-@keyframes modal-header-fixed-anim {
-    5% {
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-.popover{
-  top:inherit;
+.popover {
+  top: inherit;
   position: fixed;
   width: 250px;
   -webkit-box-sizing: border-box;
