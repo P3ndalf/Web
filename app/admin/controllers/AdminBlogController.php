@@ -3,7 +3,7 @@
 include_once 'app/models/CommentsModel.php';
 include_once 'app/models/LoginModel.php';
 
-class BlogController extends Controller
+class AdminBlogController extends Controller
 {
     public $commentsModel;
     public $userModel;
@@ -35,19 +35,17 @@ class BlogController extends Controller
         $this->view->generate('DetailedBlogView.php', $detailedBlogModel, $comments);
     }
 
-    function sendCommentAction()
+    function editBlogAction()
     {
-        $inputData = file_get_contents("php://input");
-        $data = json_decode($inputData, true);
-
-        if ($data) {
-            if ($data['content'] != "") {
-                $data['authorId'] = $_SESSION['user']['id'];
-                $this->commentsModel->addComment($data);
-                $data['authorName'] = $this->userModel->getUserById($data['authorId'])->name;
+        $xmlString = file_get_contents('php://input');
+        $xml = simplexml_load_string($xmlString, null, LIBXML_NOCDATA);
+        $json = json_encode($xml);
+        $array = json_decode($json, TRUE);
+        if (!empty($array)) {
+            if ($array['content'] != "" && $array['theme'] != "") {
+                $this->model->updateBlog($array);
             }
         }
-
-        echo json_encode($data);
+        echo json_encode($array);
     }
 }

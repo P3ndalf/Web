@@ -43,10 +43,17 @@ class LoginModel extends Model
 
         $user = $this->userRecord->find($stmt);
         if ($user) {
-            return array(
-                'name' => $user->name,
-                'role' => $user->role
-            );
+            return $user;
+        }
+    }
+
+    function getUserById($id)
+    {
+        $stmt = "id='${id}'";
+
+        $user = $this->userRecord->find($stmt);
+        if ($user) {
+            return $user;
         }
     }
 }

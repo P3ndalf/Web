@@ -3,7 +3,7 @@
 include_once 'app/models/CommentsModel.php';
 include_once 'app/models/LoginModel.php';
 
-class BlogController extends Controller
+class UserBlogController extends Controller
 {
     public $commentsModel;
     public $userModel;

@@ -1,5 +1,4 @@
 <?php
-
 include_once 'app/models/active_records/ActiveRecordAnalitics.php';
 
 class Controller

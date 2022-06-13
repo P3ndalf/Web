@@ -57,6 +57,7 @@ class Route
 		} else {
 			echo 'error in ' . $controllerPath;
 		}
+
 		// Создание экземлпяра контроллера
 		$controller = new $controllerClass($route);
 
@@ -73,7 +74,7 @@ class Route
 			include $modelPath;
 
 			// Создание экземляра модели
-			$model = new $modelClass;
+			$model = new $modelClass();
 			// Инициализация модели
 			$controller->model = $model;
 		}

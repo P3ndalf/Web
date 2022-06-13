@@ -1,5 +1,7 @@
 <?php
+
 include 'D:/OpenServer/domains/newweb/app/models/validators/FormValidator.php';
+
 class Model
 {
     public $validator;
@@ -14,7 +16,7 @@ class Model
         return $this->validator->validate($post_data);
     }
 
-    function getData(){
-        
+    function getData()
+    {
     }
 }

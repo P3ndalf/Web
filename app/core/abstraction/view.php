@@ -9,7 +9,7 @@ class View
         $this->role = $role;
     }
 
-    function generate($content_view, $data = NULL)
+    function generate($content_view, $data = NULL, $additionalData = NULL)
     {
         if (file_exists("app/" . $this->role . "//views/" . $this->template_view)) {
             include "app/" . $this->role . "//views/" . $this->template_view;

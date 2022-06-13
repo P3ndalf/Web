@@ -4,29 +4,30 @@
             Регистрация
         </h1>
         <a href="/Login/login">Переход на авторизацию</a>
-        <form method="post" enctype="multipart/form-data">
+        <form id="registrationForm" method="post" enctype="application/x-www-form-urlencoded" action="/Registration/registrate">
             <div class="form-row">
-                <div class="col-md-6 mb-3">
+                <div id="nameFieldId" class="col-md-6 mb-3">
                     <label for="NameId">Введите имя</label>
-                    <input type="text" class="form-control" value="<?php echo $data->fields["name"] ?>" placeholder="Ваше имя" name="name">
-                    <?php echo $data->validator->errMessages['name'] ?>
+                    <input id="NameId" type="text" class="form-control" placeholder="Ваше имя" name="name">
+                    <div id="NameErrorId"></div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div id="lastNameFieldId" class="col-md-6 mb-3">
                     <label for="LastNameId">Введите фамилию</label>
-                    <input type="text" class="form-control" value="<?php echo $data->fields['lastName'] ?>" placeholder="Ваша фамилия" name="lastName">
-                    <?php echo $data->validator->errMessages['lastName'] ?>
+                    <input id="LastNameId" type="text" class="form-control" placeholder="Ваша фамилия" name="lastName">
+                    <div id="LastNameErrorId"></div>
                 </div>
             </div>
 
-            <div class="form-group mb-3">
-                <label for="inputEmailId">Введите почтовый адрес</label>
-                <input type="email" class="form-control" value="<?php echo $data->fields['email'] ?>" placeholder="Ваш email" name="email">
-                <?php echo $data->validator->errMessages['email'] ?>
+            <div id="emailFieldId" class="form-group mb-3">
+                <label for="EmailId">Введите почтовый адрес</label>
+                <input id="EmailId" class="form-control" placeholder="Ваш email" name="email">
+                <div id="EmailErrorId"></div>
             </div>
-            <div class="form-group mb-3">
-                <label for="inputPasswordId">Введите пароль</label>
-                <input type="text" class="form-control" value="<?php echo $data->fields['password'] ?>" placeholder="Ваш пароль" name="password">
-                <?php echo $data->validator->errMessages['password'] ?>
+
+            <div id="passwordFieldId" class="form-group mb-3">
+                <label for="PasswordId">Введите пароль</label>
+                <input id="PasswordId" type="text" class="form-control" placeholder="Ваш пароль" name="password">
+                <div id="PasswordErrorId"></div>
             </div>
 
             <div class="d-flex mb-3">
@@ -34,5 +35,37 @@
                 <button class="btn btn-outline-danger" type="reset" value="reset">Очистить форму</button>
             </div>
         </form>
+        <script>
+            $("#registrationForm").submit(function(event) {
+                event.preventDefault();
+                var http = new XMLHttpRequest();
+                var url = '/Registration/registrate';
+                http.open('POST', url, true);
+                http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                http.onreadystatechange = function() {
+                    if (http.readyState === 4 && http.status === 200) {
+                        if (http.responseText) {
+                            var result = JSON.parse(http.responseText);
+
+                            $('#NameId').val(result['fields']['name']);
+                            $('#LastNameId').val(result['fields']['lastName']);
+                            $('#EmailId').val(result['fields']['email']);
+                            $('#PasswordId').val(result['fields']['password']);
+
+                            $('#NameErrorId').html(result['errors']['name']);
+                            $('#LastNameErrorId').html(result['errors']['lastName']);
+                            $('#EmailErrorId').html(result['errors']['email']);
+                            $('#PasswordErrorId').html(result['errors']['password']);
+
+                            if (result['saved'] == true) {
+                                window.location.href = '/Home/';
+                            }
+                        }
+                    }
+                }
+                http.send($('#registrationForm').serialize());
+            });
+        </script>
     </div>
 </div>

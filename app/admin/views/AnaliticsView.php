@@ -5,7 +5,7 @@
         </h1>
         <?php
 
-        $analitics = $data->getAnalitics(3);
+        $analitics = $data->getAnalitics(10);
         foreach ($analitics as $value) {
             echo '<div class="card mb-3">';
             echo '  <div class="card-body" style="font-size: 10px;">';
